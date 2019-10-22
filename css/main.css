@@ -1,0 +1,122 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+header, footer, nav, section, aside, menu,
+audio, video, details, article,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+/* помните об определении стиля focus! */
+:focus {
+  outline: 0; }
+
+body {
+  line-height: 1;
+  color: black;
+  background: white; }
+
+ol, ul {
+  list-style: none; }
+
+/* для таблиц надо устанавливать в разметке 'cellspacing="0"' */
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: ""; }
+
+blockquote, q {
+  quotes: "" ""; }
+
+body {
+  background-color: #fff;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-size: 27px;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 23px solid #fff;
+  height: 100vh;
+  background-color: #3b3f45;
+  padding-bottom: 50px; }
+
+header {
+  background-color: #4a4f56;
+  text-align: center;
+  padding: 25px 0;
+  color: #eb7e7f; }
+  header h1 {
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 42px;
+    margin-bottom: 8px; }
+
+.mainer {
+  max-width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto; }
+
+.checklist {
+  padding: 42px 0; }
+  .checklist label {
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    padding: 12px 15px 12px 50px;
+    position: relative;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    -webkit-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    transition: all .1s ease-in; }
+    .checklist label:nth-child(odd) {
+      background-color: #88839e; }
+    .checklist label:nth-child(even) {
+      background-color: #7a7593; }
+    .checklist label:hover {
+      border-color: #fff;
+      background-color: #625e77; }
+    .checklist label span {
+      line-height: 34px; }
+    .checklist label small {
+      color: #c3c3c3;
+      font-size: 16px; }
+      .checklist label small:before {
+        content: '('; }
+      .checklist label small:after {
+        content: ')'; }
+  .checklist input {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 10px; }
+    .checklist input:checked ~ * {
+      text-decoration: line-through;
+      color: #c3c3c3;
+      opacity: .5; }
+
+footer .mainer {
+  background-color: #4a4f56;
+  text-align: center;
+  padding: 20px 0;
+  color: #eb7e7f; }
