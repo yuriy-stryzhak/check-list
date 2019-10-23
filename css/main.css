@@ -95,6 +95,9 @@ header {
     .checklist label:hover {
       border-color: #fff;
       background-color: #625e77; }
+	  .checklist label:active {
+		  background-color: #eb7e7f;
+	  }
     .checklist label span {
       line-height: 34px; }
     .checklist label small {
