@@ -1,47 +1,42 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8"/>
-    <title>Some thing</title>
-    <link rel="stylesheet" href="css/main.css"/>
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
-  </head>
-  <body>
-    <header>
-      <div class="mainer">
-        <h1>CSS Diner Shopping List</h1>
-        <p>Let's go to the mall!</p>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>TodoIt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" /> -->
+</head>
+
+<body>
+  <header>
+    <div class="mainer">
+      <h1>Todo List</h1>
+      <p>Let's do It!</p>
+    </div>
+  </header>
+  <main>
+    <div class="mainer">
+      <div class="set">
+        <input class="set__control set__input js-note" type="text" placeholder="Add your note..." value="">
+        <input class="set__control set__input js-desc" type="text" placeholder="Add a description..." value="">
+        <button class="set__control set__btn js-add">Add +</button>
       </div>
-    </header>
-    <main>
-      <div class="mainer">
-        <div class="checklist">
-          <label> 
-            <input type="checkbox"/><span>A lot of pickles </span><small> for the next lessons about CSS </small>
-          </label>
-          <label> 
-            <input type="checkbox"/><span>10 apples </span><small> for more CSS manipulations </small>
-          </label>
-          <label> 
-            <input type="checkbox"/><span>20 oranges </span><small> because they are awesome </small>
-          </label>
-          <label> 
-            <input type="checkbox"/><span>13 plates </span><small> hm... they always disappear </small>
-          </label>
-          <label> 
-            <input type="checkbox"/><span>15 bentos </span>
-          </label>
-          <label> 
-            <input type="checkbox"/><span>1 bottle of Sake ^_^ </span><small> for my friends </small>
-          </label>
-        </div>
+      <div class="checklist js-list">
+
+
+
       </div>
-    </main>
-    <footer>
-      <div class="mainer">Bon appetit :)</div>
-    </footer>
-    
-    
-  </body>
+    </div>
+  </main>
+  <footer>
+    <div class="mainer">Never give up</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+</body>
+
 </html>

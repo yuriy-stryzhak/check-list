@@ -1,14 +1,73 @@
 @charset "UTF-8";
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-header, footer, nav, section, aside, menu,
-audio, video, details, article,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+header,
+footer,
+nav,
+section,
+aside,
+menu,
+audio,
+video,
+details,
+article,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -17,109 +76,238 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   font-style: inherit;
   font-size: 100%;
   font-family: inherit;
-  vertical-align: baseline; }
+  vertical-align: baseline;
+}
 
 /* помните об определении стиля focus! */
 :focus {
-  outline: 0; }
+  outline: 0;
+}
 
 body {
   line-height: 1;
   color: black;
-  background: white; }
+  background: white;
+}
 
-ol, ul {
-  list-style: none; }
+ol,
+ul {
+  list-style: none;
+}
 
 /* для таблиц надо устанавливать в разметке 'cellspacing="0"' */
 table {
   border-collapse: separate;
-  border-spacing: 0; }
+  border-spacing: 0;
+}
 
-caption, th, td {
+caption,
+th,
+td {
   text-align: left;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: ""; }
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+}
 
-blockquote, q {
-  quotes: "" ""; }
+blockquote,
+q {
+  quotes: """";
+}
+
+
+:root {
+  --coral: #eb7e7f;
+  --greeny: #4EBC9B;
+
+  --radius: 3px;
+}
+
+html,
+body {
+  font-size: 16px;
+}
 
 body {
   background-color: #fff;
   font-family: Trebuchet, Arial, sans-serif;
-  font-size: 27px;
   background: #fff;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 23px solid #fff;
-  height: 100vh;
+  box-sizing: border-box;
   background-color: #3b3f45;
-  padding-bottom: 50px; }
+  padding-bottom: 50px;
+}
 
 header {
   background-color: #4a4f56;
   text-align: center;
   padding: 25px 0;
-  color: #eb7e7f; }
-  header h1 {
-    font-weight: bold;
-    font-size: 33px;
-    line-height: 42px;
-    margin-bottom: 8px; }
+  color: #eb7e7f;
+  margin-bottom: 42px;
+}
+
+header h1 {
+  font-weight: bold;
+  font-size: 2.06rem;
+  line-height: 42px;
+  margin-bottom: 8px;
+}
+
+header p {
+  font-size: 1.6875rem;
+}
 
 .mainer {
   max-width: 1140px;
   padding: 0 15px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 .checklist {
-  padding: 42px 0; }
-  .checklist label {
-    display: block;
-    cursor: pointer;
-    color: #fff;
-    padding: 12px 15px 12px 50px;
-    position: relative;
-    border-bottom: 4px solid transparent;
-    border-top: 4px solid transparent;
-    -webkit-transition: all .1s ease-in;
-    -o-transition: all .1s ease-in;
-    transition: all .1s ease-in; }
-    .checklist label:nth-child(odd) {
-      background-color: #88839e; }
-    .checklist label:nth-child(even) {
-      background-color: #7a7593; }
-    .checklist label:hover {
-      border-color: #fff;
-      background-color: #625e77; }
-	  .checklist label:active {
-		  background-color: #eb7e7f;
-	  }
-    .checklist label span {
-      line-height: 34px; }
-    .checklist label small {
-      color: #c3c3c3;
-      font-size: 16px; }
-      .checklist label small:before {
-        content: '('; }
-      .checklist label small:after {
-        content: ')'; }
-  .checklist input {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 10px; }
-    .checklist input:checked ~ * {
-      text-decoration: line-through;
-      color: #c3c3c3;
-      opacity: .5; }
+  margin: 42px 0;
+}
+
+.checklist label {
+  display: block;
+  cursor: pointer;
+  color: #fff;
+  padding: 12px 15px 12px 50px;
+  position: relative;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  -webkit-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+.checklist label:nth-child(odd) {
+  background-color: #88839e;
+}
+
+.checklist label:nth-child(even) {
+  background-color: #7a7593;
+}
+
+.checklist label:hover {
+  border-color: #fff;
+  background-color: #625e77;
+}
+
+.checklist label:active {
+  background-color: var(--greeny);
+}
+
+.checklist label span {
+  line-height: 34px;
+  font-size: 1.6875rem;
+}
+
+.checklist label small {
+  color: #c3c3c3;
+  font-size: 16px;
+}
+
+.checklist label small:before {
+  content: '(';
+}
+
+.checklist label small:after {
+  content: ')';
+}
+
+.checklist input {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 3px 3px 3px 4px;
+  position: absolute;
+  left: 10px;
+}
+
+.checklist input:checked~* {
+  text-decoration: line-through;
+  color: #c3c3c3;
+  opacity: .7;
+}
+
+.btn-more {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  right: 15px;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 2rem;
+  background: none;
+  padding: 0px 10px 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all .25s;
+  opacity: 0.7;
+}
+
+.btn-more:hover {
+  background-color: var(--coral);
+  opacity: 1;
+}
+
+.set {
+  background-color: #88839e;
+  padding: 12px 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.set__control {
+  border-radius: var(--radius);
+  border: none;
+  font-family: Trebuchet, Arial, sans-serif;
+  outline: none;
+  padding: 10px 15px;
+  min-height: 50px;
+  font-size: 16px;
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.set__control::placeholder {
+  opacity: .5;
+  transition: all .25s;
+}
+
+.set__control:focus::placeholder {
+  opacity: 0;
+}
+
+.set__input {
+  flex-grow: 1;
+  color: rgba(0, 0, 0, .7);
+}
+
+.set__btn {
+  flex-grow: 1;
+  cursor: pointer;
+  background-color: var(--greeny);
+  color: #fff;
+  transition: all .25s;
+  font-size: 1.5rem;
+}
+
+.set__btn:hover {
+  transform: scale(.98);
+}
 
 footer .mainer {
   background-color: #4a4f56;
   text-align: center;
   padding: 20px 0;
-  color: #eb7e7f; }
+  color: #eb7e7f;
+}
