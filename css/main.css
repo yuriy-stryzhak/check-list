@@ -176,7 +176,7 @@ header p {
   display: block;
   cursor: pointer;
   color: #fff;
-  padding: 12px 15px 12px 50px;
+  padding: 12px 75px 12px 50px;
   position: relative;
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
@@ -263,6 +263,7 @@ header p {
   padding: 12px 15px;
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .set__control {
@@ -276,6 +277,7 @@ header p {
   display: inline-block;
   box-sizing: border-box;
   background-color: #fff;
+  transition: all .25s;
 }
 
 .set__control::placeholder {
@@ -290,6 +292,20 @@ header p {
 .set__input {
   flex-grow: 1;
   color: rgba(0, 0, 0, .7);
+  border: 1px solid transparent;
+}
+
+.set__input.error {
+  border-color: var(--coral);
+}
+
+.set__input.error::placeholder {
+  color: var(--coral);
+  opacity: 1;
+}
+
+.set__input.error:focus::placeholder {
+  opacity: 0;
 }
 
 .set__btn {
