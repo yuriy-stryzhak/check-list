@@ -19,12 +19,14 @@ addBtn.addEventListener('click', function () {
     }
 
     let newData = `
-      <label>
+      <label class="js-item">
         <input type="checkbox" />
         <span class="js-note-name">${noteField.value}</span> 
         ${smallDesc}
-        <button class="btn-more">...</button>
-        <!-- <i class="far fa-trash-alt"></i> -->
+        <button class="btn btn-more js-more">...</button>
+        <div class="hidden-actions">
+          <button class="btn btn-del"><i class="far fa-trash-alt"></i></button>
+        </div>
       </label>
     `;
 
@@ -35,7 +37,6 @@ addBtn.addEventListener('click', function () {
     smallDesc = '';
 
   }
-
 })
 
 noteField.addEventListener('focus', function () {
@@ -45,3 +46,18 @@ noteField.addEventListener('focus', function () {
 noteField.addEventListener('blur', function () {
   this.placeholder = 'Add your note...';
 })
+
+list.addEventListener('click', function (e) {
+  let btnClassList = e.target.classList;
+
+  if (~btnClassList.value.indexOf('btn-more')) {
+    e.target.style.display = 'none';
+    e.target.nextElementSibling.style.display = 'block';
+  }
+
+  if (~btnClassList.value.indexOf('btn-del') || ~e.target.parentElement.classList.value.indexOf('btn-del')) {
+    e.target.closest('.js-item').remove();
+  }
+
+})
+
