@@ -6,7 +6,33 @@ const list = document.querySelector('.js-list');
 
 let smallDesc = '';
 
+function uniqId() {
+  let id = Math.random() * 10000;
+  return ~~id;
+}
+
+
 addBtn.addEventListener('click', function () {
+
+  function checkUId() {
+    let noteName = document.getElementsByClassName('js-note-name');
+
+    let id = uniqId();
+    let ifNotUniq = [];
+
+    for (let i = 0; i < noteName.length; i += 1) {
+
+      if (`note-${id}` === noteName[i].dataset.uid) {
+        ifNotUniq.push('true');
+      }
+    }
+
+    if (ifNotUniq.includes('true')) {
+      checkUId();
+    } else {
+      return id;
+    }
+  }
 
   if (!noteField.value.trim().length) {
     noteField.value = '';
@@ -14,14 +40,17 @@ addBtn.addEventListener('click', function () {
     noteField.classList += ' error';
   } else {
 
-    if (descField.value.trim().length) {
-      smallDesc = `<small class="js-note-desc"> ${descField.value} </small>`;
+    let tagId = checkUId();
+
+    let isDescInclude = descField.value.trim().length;
+    if (isDescInclude) {
+      smallDesc = `<small class="js-note-desc" data-uid="desc-${tagId}"> ${descField.value} </small>`;
     }
 
     let newData = `
       <label class="js-item">
         <input type="checkbox" />
-        <span class="js-note-name">${noteField.value}</span> 
+        <span class="js-note-name" data-uid="note-${tagId}">${noteField.value}</span> 
         ${smallDesc}
         <button class="btn btn-more js-more">...</button>
         <div class="hidden-actions">
@@ -31,6 +60,10 @@ addBtn.addEventListener('click', function () {
     `;
 
     list.insertAdjacentHTML('afterbegin', newData);
+
+    // Set to Local Storage
+    localStorage.setItem(`note-${tagId}`, noteField.value);
+    if (isDescInclude) localStorage.setItem(`desc-${tagId}`, descField.value);
 
     noteField.value = '';
     descField.value = '';
