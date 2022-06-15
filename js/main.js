@@ -88,9 +88,57 @@ list.addEventListener('click', function (e) {
     e.target.nextElementSibling.style.display = 'block';
   }
 
+  //remove item
   if (~btnClassList.value.indexOf('btn-del') || ~e.target.parentElement.classList.value.indexOf('btn-del')) {
     e.target.closest('.js-item').remove();
+
+    //remove from local storage
+    let dataNote = e.target.closest('.js-item').querySelector('.js-note-name').dataset.uid;
+    let dataDesc = e.target.closest('.js-item').querySelector('.js-note-desc');
+    let dataToRemove = [dataNote];
+
+    if (dataDesc !== null) {
+      dataDesc = dataDesc.dataset.uid;
+      dataToRemove.push(dataDesc);
+    }
+
+    dataToRemove.forEach(k => localStorage.removeItem(k));
+
   }
 
 })
+
+/**
+ * Get from Local Storage
+ */
+
+let itemsArr = [];
+for (let i = 0; i < localStorage.length; i++) {
+  let key = localStorage.key(i);
+  itemsArr.push(parseInt(key.match(/\d+/)));
+}
+let uniqItem = new Set(itemsArr);
+
+for (const iterator of uniqItem) {
+  let storageSmallDesc = '';
+  let storageDesc = localStorage.getItem('desc-' + iterator);
+  if (storageDesc !== null) {
+    storageSmallDesc = `<small class="js-note-desc" data-uid="desc-${iterator}"> ${storageDesc} </small>`;
+  }
+  let storageData = `
+      <label class="js-item">
+        <input type="checkbox" />
+        <span class="js-note-name" data-uid="note-${iterator}">${localStorage.getItem('note-' + iterator)}</span> 
+        ${storageSmallDesc}
+        <button class="btn btn-more js-more">...</button>
+        <div class="hidden-actions">
+          <button class="btn btn-del"><i class="far fa-trash-alt"></i></button>
+        </div>
+      </label>
+    `;
+
+  list.insertAdjacentHTML('afterbegin', storageData);
+}
+
+
 
