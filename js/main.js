@@ -1,3 +1,9 @@
+if ("serviceWorker" in navigator) {
+  // register service worker
+  navigator.serviceWorker.register("service-worker.js");
+}
+
+
 const addBtn = document.querySelector('.js-add');
 const noteField = document.querySelector('.js-note');
 const descField = document.querySelector('.js-desc');
