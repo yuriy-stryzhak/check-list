@@ -1,7 +1,8 @@
 {
-  "name": "Todo it Notes by Y.S.",
-  "short_name": "Todo-it",
+  "name": "TodoIt Notes by Y.S.",
+  "short_name": "TodoIt",
   "start_url": "index.html",
+  "id": "index.html",
   "scope": "./",
   "icons": [
     {

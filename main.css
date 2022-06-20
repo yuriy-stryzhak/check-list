@@ -237,6 +237,12 @@ header p {
   opacity: .7;
 }
 
+.add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+
 .btn {
   color: #fff !important;
   text-decoration: none !important;
@@ -264,7 +270,8 @@ header p {
   opacity: 1;
 }
 
-.btn-del {
+.btn-del,
+.btn-edit {
   font-size: 20px;
   padding: 11px 14px;
   background-color: var(--coral);
@@ -276,6 +283,7 @@ header p {
   position: absolute;
   right: 19px;
   top: 50%;
+  text-decoration: none !important;
   transform: translateY(-50%);
   z-index: 2;
 }
