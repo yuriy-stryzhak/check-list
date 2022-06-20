@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["contract.png","57f44c7e84e8db553271cc408bbaad22"],["favicon.png","5de74ffab4ea64a3d6eb5298fe568d02"],["index.html","66cfac8c0691d1d050fea6f901d077b4"],["main.css","e123716639e862aef9affa9cfe217d2f"],["main.js","7c47e68ae9f27b579217c1e1b310744d"],["manifest.webmanifest","4f812a4e545ef8149b27e71ed04f70ec"]];
+var precacheConfig = [["contract.png","57f44c7e84e8db553271cc408bbaad22"],["favicon.png","5de74ffab4ea64a3d6eb5298fe568d02"],["index.html","11cb6800690ee63edaae30cd763befeb"],["main.css","e8dc427db4e25ff20f5ef1ec47762584"],["main.js","2f8dd30cf41635450a2852d0b8ca70a3"],["manifest.webmanifest","e73559d7101790c903d3c738158050b6"],["maskable_icon.png","41b7177beee1b01db3ef73d313ee087f"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 

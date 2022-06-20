@@ -140,7 +140,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #3b3f45;
-  padding-bottom: 50px;
+  padding-bottom: 83px;
 }
 
 header {
@@ -237,11 +237,24 @@ header p {
   opacity: .7;
 }
 
-.add-button {
-  position: absolute;
-  top: 1px;
-  left: 1px;
+.install-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  transition: all .5s;
+  width: 100%;
+  text-align: center;
+  font-family: inherit;
+  font-size: 18px;
+  display: inline-block;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px 0;
+  cursor: pointer;
+  background-color: #eb7e7f;
 }
+
 
 .btn {
   color: #fff !important;
