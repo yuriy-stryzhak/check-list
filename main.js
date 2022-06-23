@@ -3,6 +3,7 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
 
+const showFormBtn = document.querySelector('.js-show_form');
 
 const addBtn = document.querySelector('.js-add');
 const noteField = document.querySelector('.js-note');
@@ -16,6 +17,57 @@ function uniqId() {
   let id = Math.random() * 10000;
   return ~~id;
 }
+
+const body = document.querySelector('body');
+
+body.addEventListener('click', function (e) {
+
+  if (!e.target.classList.contains('btn')) {
+
+    let moreBtn = document.querySelectorAll('.js-more');
+    let blockControls = document.querySelectorAll('.js-item_controls');
+
+    moreBtn.forEach(function (elem) {
+      elem.classList.remove('hide');
+    })
+
+    blockControls.forEach(function (elem) {
+      elem.classList.remove('active');
+    })
+
+  }
+})
+
+/**
+ * show additionat form
+ */
+
+function toggle(el) {
+
+  if (!el.classList.contains('show')) {
+    setTimeout(() => {
+      el.classList.add('show');
+      showFormBtn.classList.add('show');
+    });
+    el.style.display = 'flex';
+  }
+  else {
+    el.classList.remove('show');
+    showFormBtn.classList.remove('show');
+    setTimeout(() => {
+      noteField.placeholder = 'Add your note...';
+      noteField.classList.remove('error');
+      el.style.display = 'none';
+    }, 100);
+  }
+}
+
+showFormBtn.addEventListener('click', function () {
+  window.navigator.vibrate(200);
+  let setBlock = document.querySelector('.set');
+
+  toggle(setBlock);
+});
 
 
 addBtn.addEventListener('click', function () {
@@ -43,7 +95,7 @@ addBtn.addEventListener('click', function () {
   if (!noteField.value.trim().length) {
     noteField.value = '';
     noteField.placeholder = 'This field must be filled';
-    noteField.classList += ' error';
+    noteField.classList.add('error');
   } else {
 
     let tagId = checkUId();
@@ -59,7 +111,7 @@ addBtn.addEventListener('click', function () {
         <span class="js-note-name" data-uid="note-${tagId}">${noteField.value}</span> 
         ${smallDesc}
         <button class="btn btn-more js-more">...</button>
-        <div class="hidden-actions">
+        <div class="hidden-actions js-item_controls">
           <button class="btn btn-edit">Edit</button>
           <button class="btn btn-del">Del</button>
         </div>
@@ -91,13 +143,13 @@ noteField.addEventListener('blur', function () {
 list.addEventListener('click', function (e) {
   let btnClassList = e.target.classList;
 
-  if (~btnClassList.value.indexOf('btn-more')) {
-    e.target.style.display = 'none';
-    e.target.nextElementSibling.style.display = 'block';
+  if (btnClassList.contains('js-more')) {
+    e.target.classList.add('hide');
+    e.target.nextElementSibling.classList.add('active');
   }
 
   //remove item
-  if (~btnClassList.value.indexOf('btn-del') || ~e.target.parentElement.classList.value.indexOf('btn-del')) {
+  if (btnClassList.contains('btn-del')) {
     e.target.closest('.js-item').remove();
 
     //remove from local storage
@@ -143,7 +195,7 @@ for (const iterator of uniqItem) {
         <span class="js-note-name" data-uid="note-${iterator}">${localStorage.getItem('note-' + iterator)}</span> 
         ${storageSmallDesc}
         <button class="btn btn-more js-more">...</button>
-        <div class="hidden-actions">
+        <div class="hidden-actions js-item_controls">
           <button class="btn btn-edit">Edit</button>
           <button class="btn btn-del">Del</button>
         </div>
