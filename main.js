@@ -63,7 +63,7 @@ function toggle(el) {
 }
 
 showFormBtn.addEventListener('click', function () {
-  window.navigator.vibrate(30);
+  window.navigator.vibrate(50);
   let setBlock = document.querySelector('.set');
 
   toggle(setBlock);
@@ -93,13 +93,13 @@ addBtn.addEventListener('click', function () {
   }
 
   if (!noteField.value.trim().length) {
-    window.navigator.vibrate([30, 30]);
+    window.navigator.vibrate([50, 100, 50]);
     noteField.value = '';
     noteField.placeholder = 'This field must be filled';
     noteField.classList.add('error');
   } else {
 
-    window.navigator.vibrate(30);
+    window.navigator.vibrate(50);
 
     let tagId = checkUId();
 
@@ -154,7 +154,7 @@ list.addEventListener('click', function (e) {
   //remove item
   if (btnClassList.contains('btn-del')) {
     e.target.closest('.js-item').remove();
-    window.navigator.vibrate(30);
+    window.navigator.vibrate(50);
 
     //remove from local storage
     let dataNote = e.target.closest('.js-item').querySelector('.js-note-name').dataset.uid;
@@ -218,7 +218,7 @@ list.addEventListener('change', function (e) {
   let checkIndex = e.target.dataset.uid;
 
   if (e.target.checked) {
-    window.navigator.vibrate(30);
+    window.navigator.vibrate(50);
     localStorage.setItem(checkIndex, true);
   } else {
     localStorage.setItem(checkIndex, false);
