@@ -240,7 +240,7 @@ header h1 {
 }
 
 .checklist label span {
-  line-height: 34px;
+  line-height: 1.1;
   font-size: 1.6rem;
 }
 
@@ -326,16 +326,21 @@ header h1 {
 .hidden-actions {
   display: none;
   position: absolute;
-  right: 19px;
-  top: 50%;
+  right: 0;
+  top: 0;
   text-decoration: none !important;
-  transform: translateY(-50%);
   z-index: 2;
   opacity: 1 !important;
+  padding: 19px;
+  height: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(2px);
+  gap: 5px;
+  align-items: center;
 }
 
 .hidden-actions.active {
-  display: block;
+  display: flex;
 }
 
 .set {

@@ -105,7 +105,7 @@ addBtn.addEventListener('click', function () {
 
     let isDescInclude = descField.value.trim().length;
     if (isDescInclude) {
-      smallDesc = `<small class="js-note-desc" data-uid="desc-${tagId}"> ${descField.value} </small>`;
+      smallDesc = `<small class="js-note-desc" data-uid="desc-${tagId}">${descField.value}</small>`;
     }
 
     let newData = `
@@ -115,8 +115,8 @@ addBtn.addEventListener('click', function () {
         ${smallDesc}
         <button class="btn btn-more js-more">...</button>
         <div class="hidden-actions js-item_controls">
-          <button class="btn btn-edit">Edit</button>
-          <button class="btn btn-del">Del</button>
+          <button class="btn btn-edit js-btn-edit">Edit</button>
+          <button class="btn btn-del js-btn-del">Del</button>
         </div>
       </label>
     `;
@@ -152,7 +152,7 @@ list.addEventListener('click', function (e) {
   }
 
   //remove item
-  if (btnClassList.contains('btn-del')) {
+  if (btnClassList.contains('js-btn-del')) {
     e.target.closest('.js-item').remove();
     window.navigator.vibrate(50);
 
@@ -170,6 +170,24 @@ list.addEventListener('click', function (e) {
     dataToRemove.forEach(k => localStorage.removeItem(k));
 
   }
+
+  //edit item
+  if (btnClassList.contains('js-btn-edit')) {
+
+    let editNote = e.target.closest('.js-item').querySelector('.js-note-name').textContent;
+    let editDesc = e.target.closest('.js-item').querySelector('.js-note-desc');
+    if (editDesc != null) editDesc = editDesc.textContent;
+
+    noteField.value = editNote;
+    if (editDesc) descField.value = editDesc;
+
+    e.target.closest('.js-item').querySelector('.js-btn-del').click();
+    if (!showFormBtn.classList.contains('show')) {
+      showFormBtn.click();
+    }
+  }
+
+
 
 })
 
@@ -190,7 +208,7 @@ for (const iterator of uniqItem) {
   let storageCheck = localStorage.getItem('check-' + iterator);
 
   if (storageDesc !== null) {
-    storageSmallDesc = `<small class="js-note-desc" data-uid="desc-${iterator}"> ${storageDesc} </small>`;
+    storageSmallDesc = `<small class="js-note-desc" data-uid="desc-${iterator}">${storageDesc}</small>`;
   }
 
   let storageData = `
@@ -200,8 +218,8 @@ for (const iterator of uniqItem) {
         ${storageSmallDesc}
         <button class="btn btn-more js-more">...</button>
         <div class="hidden-actions js-item_controls">
-          <button class="btn btn-edit">Edit</button>
-          <button class="btn btn-del">Del</button>
+          <button class="btn btn-edit js-btn-edit">Edit</button>
+          <button class="btn btn-del js-btn-del">Del</button>
         </div>
       </label>
     `;
@@ -224,8 +242,6 @@ list.addEventListener('change', function (e) {
     localStorage.setItem(checkIndex, false);
   }
 })
-
-
 
 
 
