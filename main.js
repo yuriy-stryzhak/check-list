@@ -3,6 +3,12 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
 
+// get permission to run notifications
+let noticePermission;
+Notification.requestPermission().then(function (result) {
+  noticePermission = result;
+});
+
 const showFormBtn = document.querySelector('.js-show_form');
 
 const addBtn = document.querySelector('.js-add');
@@ -115,6 +121,7 @@ addBtn.addEventListener('click', function () {
         ${smallDesc}
         <button class="btn btn-more js-more">...</button>
         <div class="hidden-actions js-item_controls">
+          <button class="btn btn-notice js-btn-notice">Notice</button>
           <button class="btn btn-edit js-btn-edit">Edit</button>
           <button class="btn btn-del js-btn-del">Del</button>
         </div>
@@ -186,6 +193,40 @@ list.addEventListener('click', function (e) {
       showFormBtn.click();
     }
   }
+
+  //Notice
+  if (btnClassList.contains('js-btn-notice')) {
+
+    // function spawnNotification(theBody, theTitle) {
+    //   let options = {
+    //     body: theBody,
+    //     vibrate: [200, 100, 200],
+    //     requireInteraction: true,
+    //   }
+    //   let n = new Notification(theTitle, options);
+    // }
+    // spawnNotification('YOU TOTAL LOSER. How could you do this to me?', 'Emogotchi says');
+
+
+
+    function showNotification() {
+      if (noticePermission === 'granted') {
+        navigator.serviceWorker.ready.then(function (registration) {
+          registration.showNotification('Vibration Sample', {
+            body: 'Buzz! Buzz!',
+            icon: 'contract.png',
+            vibrate: [200, 100, 200, 100, 200, 100, 200],
+            tag: 'vibration-sample'
+          });
+        });
+      }
+    }
+
+    showNotification();
+
+  }
+
+
 
 
 
