@@ -9,6 +9,12 @@ Notification.requestPermission().then(function (result) {
   noticePermission = result;
 });
 
+const noticeBox = document.querySelector('.js-notice-box');
+const noticeClose = document.querySelector('.js-notice-close');
+const noticeSet = document.querySelector('.js-btn-notice-time');
+const noticeDate = document.querySelector('.js-notice-date');
+const noticeTime = document.querySelector('.js-notice-time');
+
 const showFormBtn = document.querySelector('.js-show_form');
 
 const addBtn = document.querySelector('.js-add');
@@ -167,11 +173,18 @@ list.addEventListener('click', function (e) {
     let dataNote = e.target.closest('.js-item').querySelector('.js-note-name').dataset.uid;
     let dataCheck = e.target.closest('.js-item').querySelector('.js-check').dataset.uid;
     let dataDesc = e.target.closest('.js-item').querySelector('.js-note-desc');
+    let dataNotice = e.target.closest('.js-item').querySelector('.notice-time');
     let dataToRemove = [dataNote, dataCheck];
 
     if (dataDesc !== null) {
       dataDesc = dataDesc.dataset.uid;
       dataToRemove.push(dataDesc);
+    }
+
+    if (dataNotice !== null) {
+      dataNotice = dataNotice.dataset.uid;
+      dataToRemove.push(dataNotice);
+      location.reload();
     }
 
     dataToRemove.forEach(k => localStorage.removeItem(k));
@@ -197,44 +210,67 @@ list.addEventListener('click', function (e) {
   //Notice
   if (btnClassList.contains('js-btn-notice')) {
 
-    // function spawnNotification(theBody, theTitle) {
-    //   let options = {
-    //     body: theBody,
-    //     vibrate: [200, 100, 200],
-    //     requireInteraction: true,
-    //   }
-    //   let n = new Notification(theTitle, options);
-    // }
-    // spawnNotification('YOU TOTAL LOSER. How could you do this to me?', 'Emogotchi says');
+    //Set default data and time to input
+    noticeDate.value = new Date().toISOString().substring(0, 10);
 
+    let noticeMakeClock = '' + new Date().getMinutes();
+    if (noticeMakeClock.length < 2) noticeMakeClock = '0' + noticeMakeClock;
 
+    noticeTime.value = `${new Date().getHours() + 1}:${noticeMakeClock}`;
 
-    function showNotification() {
-      if (noticePermission === 'granted') {
-        navigator.serviceWorker.ready.then(function (registration) {
-          registration.showNotification('Vibration Sample', {
-            body: 'Buzz! Buzz!',
-            icon: 'contract.png',
-            vibrate: [200, 100, 200, 100, 200, 100, 200],
-            tag: 'vibration-sample'
-          });
-        });
-      }
-    }
-
-    showNotification();
+    let noticeNote = e.target.closest('.js-item').querySelector('.js-note-name').dataset.uid;
+    noticeBox.classList.add('show');
+    noticeSet.dataset.notice = noticeNote;
 
   }
 
-
-
-
-
 })
+
+noticeBox.addEventListener('click', function (e) {
+  if (!e.target.closest('.notice')) {
+    noticeBox.classList.remove('show');
+  }
+})
+
+noticeClose.addEventListener('click', function (e) {
+  noticeBox.classList.remove('show');
+})
+
+let noticeSetTime;
+
+noticeSet.addEventListener('click', function (e) {
+
+  let time = noticeDate.value + ' ' + noticeTime.value;
+  noticeSetTime = Date.parse(time);
+  if (time.trim().length > 1) {
+    let noticeTimeAlreadySet = document.querySelector('[data-uid="' + e.target.dataset.notice + '"]').closest('.js-item').querySelector('.notice-time');
+    if (noticeTimeAlreadySet) noticeTimeAlreadySet.remove();
+
+    let timeToOutput = dateFormat(noticeDate.value, 'dd-MM-yy') + ', ' + noticeTime.value;
+    let elem = document.createElement('div');
+    elem.className += 'notice-time';
+    elem.textContent = timeToOutput;
+    elem.dataset.uid = 'notice-' + parseInt(e.target.dataset.notice.match(/\d+/));
+    document.querySelector('[data-uid="' + e.target.dataset.notice + '"]').closest('.js-item').insertAdjacentElement('beforeend', elem);
+    noticeClose.click();
+
+    //Set notice time to Storage 
+    let currentUId = parseInt(e.target.dataset.notice.match(/\d+/));
+    localStorage.setItem(`notice-${currentUId}`, time);
+
+    location.reload();
+
+  }
+})
+
+
+
 
 /**
  * Get from Local Storage
  */
+
+let noticeArr = [];
 
 let itemsArr = [];
 for (let i = 0; i < localStorage.length; i++) {
@@ -244,24 +280,44 @@ for (let i = 0; i < localStorage.length; i++) {
 let uniqItem = new Set(itemsArr);
 
 for (const iterator of uniqItem) {
-  let storageSmallDesc = '';
+  let storageSmallDesc = '',
+    storageNoticeHtml = '';
   let storageDesc = localStorage.getItem('desc-' + iterator);
+  let storageNote = localStorage.getItem('note-' + iterator);
   let storageCheck = localStorage.getItem('check-' + iterator);
+  let storageNotice = localStorage.getItem('notice-' + iterator);
+
+
 
   if (storageDesc !== null) {
     storageSmallDesc = `<small class="js-note-desc" data-uid="desc-${iterator}">${storageDesc}</small>`;
   }
 
+
+  let noticeObj = {};
+  if (storageNotice !== null) {
+    noticeObj[Date.parse(storageNotice)] = storageNote;
+    noticeObj['notice'] = `notice-${iterator}`;
+    noticeArr.push(noticeObj);
+    //change date format
+    let dateSplit = storageNotice.split(' ');
+    storageNotice = dateFormat(dateSplit[0], 'dd-MM-yy') + ', ' + dateSplit[1];
+
+    storageNoticeHtml = `<div class="notice-time" data-uid="notice-${iterator}">${storageNotice}</div>`;
+  }
+
   let storageData = `
       <label class="js-item">
         <input class="js-check" type="checkbox" data-uid="check-${iterator}" />
-        <span class="js-note-name" data-uid="note-${iterator}">${localStorage.getItem('note-' + iterator)}</span> 
+        <span class="js-note-name" data-uid="note-${iterator}">${storageNote}</span> 
         ${storageSmallDesc}
         <button class="btn btn-more js-more">...</button>
         <div class="hidden-actions js-item_controls">
+          <button class="btn btn-notice js-btn-notice">Notice</button>
           <button class="btn btn-edit js-btn-edit">Edit</button>
           <button class="btn btn-del js-btn-del">Del</button>
         </div>
+        ${storageNoticeHtml}
       </label>
     `;
 
@@ -271,6 +327,20 @@ for (const iterator of uniqItem) {
     document.querySelector('.js-check').checked = true;
   }
 }
+
+let noticeInterval = setInterval(() => {
+  let currentTime = Date.parse(new Date());
+  for (let i = 0; i < noticeArr.length; i++) {
+    const element = noticeArr[i];
+    for (let el in element) {
+      if (el == currentTime) showNotification(element[el]);
+      if (el < currentTime) {
+        document.querySelector(`[data-uid="${element['notice']}"`).classList.add('closed')
+      }
+    }
+  }
+}, 1000);
+
 
 //Store checked element
 list.addEventListener('change', function (e) {
@@ -284,6 +354,22 @@ list.addEventListener('change', function (e) {
   }
 })
 
+
+function showNotification(noteName) {
+  var d = new Date();
+  if (noticePermission === 'granted') {
+    navigator.serviceWorker.ready.then(function (registration) {
+      registration.showNotification('TodoIt', {
+        body: noteName,
+        icon: 'contract.png',
+        // badge: '<URL String>', // icon for Mobile
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
+        tag: 'vibration-sample',
+        timestamp: Date.parse(d),
+      });
+    });
+  }
+}
 
 
 
@@ -317,3 +403,29 @@ window.addEventListener('beforeinstallprompt', (e) => {
     });
   });
 });
+
+//date formatting function
+function dateFormat(inputDate, format) {
+  //parse the input date
+  const date = new Date(inputDate);
+
+  //extract the parts of the date
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  //replace the month
+  format = format.replace("MM", month.toString().padStart(2, "0"));
+
+  //replace the year
+  if (format.indexOf("yyyy") > -1) {
+    format = format.replace("yyyy", year.toString());
+  } else if (format.indexOf("yy") > -1) {
+    format = format.replace("yy", year.toString().substr(2, 2));
+  }
+
+  //replace the day
+  format = format.replace("dd", day.toString().padStart(2, "0"));
+
+  return format;
+}

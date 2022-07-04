@@ -132,6 +132,7 @@ button {
   --coral: #eb7e7f;
   --greeny: #4EBC9B;
   --lamppost: #4a4f56;
+  --lamppostopacity: rgba(74, 79, 86, .25);
 
   --radius: 3px;
 }
@@ -150,6 +151,7 @@ body {
   box-sizing: border-box;
   background-color: #3b3f45;
   padding-bottom: 42px;
+  position: relative;
 }
 
 header {
@@ -316,7 +318,8 @@ header h1 {
 }
 
 .btn-del,
-.btn-edit {
+.btn-edit,
+.btn-notice {
   font-size: 20px;
   padding: 11px 14px;
   background-color: var(--coral);
@@ -375,6 +378,10 @@ header h1 {
   transition: all .25s;
 }
 
+.set__control.border {
+  border: 1px solid var(--lamppostopacity);
+}
+
 .set__control::placeholder {
   opacity: .5;
   transition: all .25s;
@@ -414,6 +421,77 @@ header h1 {
 
 .set__btn:hover {
   transform: scale(.98);
+}
+
+.notice {
+  position: absolute;
+  width: 320px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: var(--radius);
+  padding: 30px 15px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.notice fieldset {
+  display: flex;
+  gap: 10px;
+}
+
+.notice .set__control {
+  margin-top: 10px;
+}
+
+.notice__wrap {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 3;
+  display: none;
+}
+
+.notice__wrap.show {
+  display: block;
+}
+
+.notice__title {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 0.7em;
+  line-height: 1.3;
+}
+
+.notice-time {
+  margin-top: 10px;
+  font-size: 12px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE4cHgiIHdpZHRoPSIxOHB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0iI2ZmZmZmZiI+CiA8cGF0aCBkPSJtMjMuOTkgNGMtMTEuMDUgMC0xOS45OSA4Ljk1LTE5Ljk5IDIwczguOTQgMjAgMTkuOTkgMjBjMTEuMDUgMCAyMC4wMS04Ljk1IDIwLjAxLTIwcy04Ljk2LTIwLTIwLjAxLTIwem0wLjAxIDM2Yy04Ljg0IDAtMTYtNy4xNi0xNi0xNnM3LjE2LTE2IDE2LTE2IDE2IDcuMTYgMTYgMTYtNy4xNiAxNi0xNiAxNnoiLz4KIDxwYXRoIGQ9Im0wIDBoNDh2NDhoLTQ4eiIgZmlsbD0ibm9uZSIvPgogPHBhdGggZD0ibTI1IDE0aC0zdjEybDEwLjQ5IDYuMyAxLjUxLTIuNDYtOS01LjM0eiIvPgo8L3N2Zz4K);
+  background-repeat: no-repeat;
+  min-height: 18px;
+  padding-left: 24px;
+  padding-top: 5px;
+  text-decoration: none !important;
+}
+
+.notice-time.closed {
+  text-decoration: line-through !important;
+  opacity: 0.5 !important;
+}
+
+.notice__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  font-size: 30px;
+  opacity: 0.3;
 }
 
 
