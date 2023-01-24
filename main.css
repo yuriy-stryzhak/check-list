@@ -79,7 +79,6 @@ td {
   vertical-align: baseline;
 }
 
-/* помните об определении стиля focus! */
 :focus {
   outline: 0;
 }
@@ -95,7 +94,6 @@ ul {
   list-style: none;
 }
 
-/* для таблиц надо устанавливать в разметке 'cellspacing="0"' */
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -117,7 +115,7 @@ q:after {
 
 blockquote,
 q {
-  quotes: """";
+  quotes: "" "";
 }
 
 button {
@@ -127,12 +125,11 @@ button {
   cursor: pointer;
 }
 
-
 :root {
   --coral: #eb7e7f;
-  --greeny: #4EBC9B;
+  --greeny: #4ebc9b;
   --lamppost: #4a4f56;
-  --lamppostopacity: rgba(74, 79, 86, .25);
+  --lamppostopacity: rgba(74, 79, 86, 0.25);
 
   --radius: 3px;
 }
@@ -160,7 +157,7 @@ header {
   padding: 25px 0;
   color: var(--coral);
   margin-bottom: 42px;
-  border-bottom: 1px solid rgba(195, 195, 195, .4);
+  border-bottom: 1px solid rgba(195, 195, 195, 0.4);
   position: relative;
   z-index: 2;
 }
@@ -190,7 +187,7 @@ header h1 {
   width: 45px;
   height: 45px;
   color: var(--coral);
-  transition: all .25s;
+  transition: all 0.25s;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 }
@@ -217,9 +214,9 @@ header h1 {
   position: relative;
   border-bottom: 4px solid transparent;
   border-top: 4px solid transparent;
-  -webkit-transition: all .1s ease-in;
-  -o-transition: all .1s ease-in;
-  transition: all .1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 }
@@ -252,11 +249,11 @@ header h1 {
 }
 
 .checklist label small:before {
-  content: '(';
+  content: "(";
 }
 
 .checklist label small:after {
-  content: ')';
+  content: ")";
 }
 
 .checklist input {
@@ -270,10 +267,10 @@ header h1 {
   transform: translateY(-50%);
 }
 
-.checklist input:checked~* {
+.checklist input:checked ~ * {
   text-decoration: line-through;
   color: #c3c3c3;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .install-button {
@@ -294,7 +291,7 @@ header h1 {
   color: #fff !important;
   text-decoration: none !important;
   border-radius: var(--radius);
-  transition: all .25s;
+  transition: all 0.25s;
   opacity: 0.7;
 }
 
@@ -352,7 +349,7 @@ header h1 {
   gap: 15px;
   flex-wrap: wrap;
   display: none;
-  transition: all .25s;
+  transition: all 0.25s;
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
@@ -375,7 +372,7 @@ header h1 {
   display: inline-block;
   box-sizing: border-box;
   background-color: #fff;
-  transition: all .25s;
+  transition: all 0.25s;
 }
 
 .set__control.border {
@@ -383,8 +380,8 @@ header h1 {
 }
 
 .set__control::placeholder {
-  opacity: .5;
-  transition: all .25s;
+  opacity: 0.5;
+  transition: all 0.25s;
 }
 
 .set__control:focus::placeholder {
@@ -393,7 +390,7 @@ header h1 {
 
 .set__input {
   flex-grow: 1;
-  color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, 0.7);
   border: 1px solid transparent;
 }
 
@@ -415,12 +412,12 @@ header h1 {
   cursor: pointer;
   background-color: var(--greeny);
   color: #fff;
-  transition: all .25s;
+  transition: all 0.25s;
   font-size: 24px;
 }
 
 .set__btn:hover {
-  transform: scale(.98);
+  transform: scale(0.98);
 }
 
 .notice {
@@ -439,20 +436,22 @@ header h1 {
 .notice fieldset {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .notice .set__control {
+  flex: 1;
   margin-top: 10px;
 }
 
 .notice__wrap {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 3;
   display: none;
 }
@@ -493,8 +492,6 @@ header h1 {
   font-size: 30px;
   opacity: 0.3;
 }
-
-
 
 /* Media */
 @media screen and (max-width: 768px) {
